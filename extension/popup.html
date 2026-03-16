@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container" id="dashboard">
+    <header>
+      <span class="brand"><span class="brand-ai">AnyAI</span> <span class="brand-radar">Radar</span></span>
+      <span class="status" id="status"></span>
+      <button class="pin-btn" id="pin-btn" data-i18n-title="tip_pin">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="1" y="1" width="12" height="12" rx="2"/><line x1="5" y1="1" x2="5" y2="13"/></svg>
+      </button>
+    </header>
+
+    <div class="content">
+    <!-- Sentiment -->
+    <section class="sentiment-card" data-i18n-title="tip_sentiment">
+      <span class="data-label" data-i18n="sentiment">Market Sentiment</span>
+      <div class="sentiment-row">
+        <div class="sentiment-bar">
+          <div class="sentiment-fill" id="sentiment-fill"></div>
+        </div>
+        <span class="sentiment-text" id="sentiment-text">—</span>
+      </div>
+    </section>
+
+    <!-- Global Market — horizontal strip -->
+    <section class="global-card" id="global-card" style="display:none">
+      <div class="global-strip">
+        <div class="global-cell">
+          <span class="data-label" data-i18n="total_mcap">MCap</span>
+          <span class="data-value neutral" id="global-mcap">—</span>
+        </div>
+        <span class="global-dot">·</span>
+        <div class="global-cell">
+          <span class="data-label" data-i18n="total_vol">Vol</span>
+          <span class="data-value neutral" id="global-vol">—</span>
+        </div>
+        <span class="global-dot">·</span>
+        <div class="global-cell">
+          <span class="data-label" data-i18n="btc_dom">BTC</span>
+          <span class="data-value neutral" id="global-btc-dom">—</span>
+        </div>
+        <span class="global-dot">·</span>
+        <div class="global-cell">
+          <span class="data-label" data-i18n="eth_dom">ETH</span>
+          <span class="data-value neutral" id="global-eth-dom">—</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- BTC -->
+    <section class="card" data-coin="btc">
+      <div class="coin-header">
+        <span class="coin-name">BTC</span>
+        <span class="change-badge" id="btc-change">—</span>
+      </div>
+      <div class="price-table">
+        <div class="price-row">
+          <span class="exchange">Binance</span>
+          <span class="quote"></span>
+          <span class="price" id="btc-bn-price">—</span>
+          <span class="arrow" id="btc-bn-arrow"></span>
+        </div>
+        <div class="price-row">
+          <span class="exchange">Coinbase</span>
+          <span class="quote"></span>
+          <span class="price" id="btc-cb-price">—</span>
+          <span class="arrow" id="btc-cb-arrow"></span>
+        </div>
+      </div>
+      <div class="diff-row" data-i18n-title="tip_premium">
+        <span class="data-label diff-label" data-i18n="premium">Premium</span>
+        <span class="diff-line" id="btc-diff">—</span>
+      </div>
+
+      <div class="data-grid">
+        <div class="data-cell" data-i18n-title="tip_funding">
+          <span class="data-label" data-i18n="funding">Funding</span>
+          <span class="data-value" id="btc-fr">—</span>
+        </div>
+        <div class="data-cell" data-i18n-title="tip_oi">
+          <span class="data-label" data-i18n="open_int">OI</span>
+          <span class="data-value" id="btc-oi">—</span>
+        </div>
+        <div class="data-cell" data-i18n-title="tip_ls">
+          <span class="data-label" data-i18n="long_short">L/S</span>
+          <span class="data-value" id="btc-ls">—</span>
+        </div>
+        <div class="data-cell" data-i18n-title="tip_top">
+          <span class="data-label" data-i18n="top_traders">Top</span>
+          <span class="data-value" id="btc-topls">—</span>
+        </div>
+        <div class="data-cell" data-i18n-title="tip_taker">
+          <span class="data-label" data-i18n="taker_bs">Taker</span>
+          <span class="data-value" id="btc-taker">—</span>
+        </div>
+        <div class="data-cell" data-i18n-title="tip_vol">
+          <span class="data-label" data-i18n="volume">Vol</span>
+          <span class="data-value" id="btc-vol">—</span>
+        </div>
+      </div>
+
+      <div class="td-bar" data-i18n-title="tip_td">
+        <span class="td-label" data-i18n="td_seq">TD</span>
+        <div class="td-cells">
+          <span class="td-cell"><span class="td-tf">1h</span><span class="td-val neutral" id="btc-td-1h">—</span></span>
+          <span class="td-cell"><span class="td-tf">4h</span><span class="td-val neutral" id="btc-td-4h">—</span></span>
+          <span class="td-cell"><span class="td-tf">1D</span><span class="td-val neutral" id="btc-td-1d">—</span></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ETH -->
+    <section class="card" data-coin="eth">
+      <div class="coin-header">
+        <span class="coin-name">ETH</span>
+        <span class="change-badge" id="eth-change">—</span>
+      </div>
+      <div class="price-table">
+        <div class="price-row">
+          <span class="exchange">Binance</span>
+          <span class="quote"></span>
+          <span class="price" id="eth-bn-price">—</span>
+          <span class="arrow" id="eth-bn-arrow"></span>
+        </div>
+        <div class="price-row">
+          <span class="exchange">Coinbase</span>
+          <span class="quote"></span>
+          <span class="price" id="eth-cb-price">—</span>
+          <span class="arrow" id="eth-cb-arrow"></span>
+        </div>
+      </div>
+      <div class="diff-row" data-i18n-title="tip_premium">
+        <span class="data-label diff-label" data-i18n="premium">Premium</span>
+        <span class="diff-line" id="eth-diff">—</span>
+      </div>
+
+      <div class="data-grid">
+        <div class="data-cell" data-i18n-title="tip_funding">
+          <span class="data-label" data-i18n="funding">Funding</span>
+          <span class="data-value" id="eth-fr">—</span>
+        </div>
+        <div class="data-cell" data-i18n-title="tip_oi">
+          <span class="data-label" data-i18n="open_int">OI</span>
+          <span class="data-value" id="eth-oi">—</span>
+        </div>
+        <div class="data-cell" data-i18n-title="tip_ls">
+          <span class="data-label" data-i18n="long_short">L/S</span>
+          <span class="data-value" id="eth-ls">—</span>
+        </div>
+        <div class="data-cell" data-i18n-title="tip_top">
+          <span class="data-label" data-i18n="top_traders">Top</span>
+          <span class="data-value" id="eth-topls">—</span>
+        </div>
+        <div class="data-cell" data-i18n-title="tip_taker">
+          <span class="data-label" data-i18n="taker_bs">Taker</span>
+          <span class="data-value" id="eth-taker">—</span>
+        </div>
+        <div class="data-cell" data-i18n-title="tip_vol">
+          <span class="data-label" data-i18n="volume">Vol</span>
+          <span class="data-value" id="eth-vol">—</span>
+        </div>
+      </div>
+
+      <div class="td-bar" data-i18n-title="tip_td">
+        <span class="td-label" data-i18n="td_seq">TD</span>
+        <div class="td-cells">
+          <span class="td-cell"><span class="td-tf">1h</span><span class="td-val neutral" id="eth-td-1h">—</span></span>
+          <span class="td-cell"><span class="td-tf">4h</span><span class="td-val neutral" id="eth-td-4h">—</span></span>
+          <span class="td-cell"><span class="td-tf">1D</span><span class="td-val neutral" id="eth-td-1d">—</span></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- BNB -->
+    <section class="card" data-coin="bnb">
+      <div class="coin-header">
+        <span class="coin-name">BNB</span>
+        <span class="change-badge" id="bnb-change">—</span>
+      </div>
+      <div class="price-table">
+        <div class="price-row">
+          <span class="exchange">Binance</span>
+          <span class="quote"></span>
+          <span class="price" id="bnb-bn-price">—</span>
+          <span class="arrow" id="bnb-bn-arrow"></span>
+        </div>
+        <div class="price-row">
+          <span class="exchange">Coinbase</span>
+          <span class="quote"></span>
+          <span class="price" id="bnb-cb-price">—</span>
+          <span class="arrow" id="bnb-cb-arrow"></span>
+        </div>
+      </div>
+      <div class="diff-row" data-i18n-title="tip_premium">
+        <span class="data-label diff-label" data-i18n="premium">Premium</span>
+        <span class="diff-line" id="bnb-diff">—</span>
+      </div>
+
+      <div class="data-grid">
+        <div class="data-cell" data-i18n-title="tip_funding">
+          <span class="data-label" data-i18n="funding">Funding</span>
+          <span class="data-value" id="bnb-fr">—</span>
+        </div>
+        <div class="data-cell" data-i18n-title="tip_oi">
+          <span class="data-label" data-i18n="open_int">OI</span>
+          <span class="data-value" id="bnb-oi">—</span>
+        </div>
+        <div class="data-cell" data-i18n-title="tip_ls">
+          <span class="data-label" data-i18n="long_short">L/S</span>
+          <span class="data-value" id="bnb-ls">—</span>
+        </div>
+        <div class="data-cell" data-i18n-title="tip_top">
+          <span class="data-label" data-i18n="top_traders">Top</span>
+          <span class="data-value" id="bnb-topls">—</span>
+        </div>
+        <div class="data-cell" data-i18n-title="tip_taker">
+          <span class="data-label" data-i18n="taker_bs">Taker</span>
+          <span class="data-value" id="bnb-taker">—</span>
+        </div>
+        <div class="data-cell" data-i18n-title="tip_vol">
+          <span class="data-label" data-i18n="volume">Vol</span>
+          <span class="data-value" id="bnb-vol">—</span>
+        </div>
+      </div>
+
+      <div class="td-bar" data-i18n-title="tip_td">
+        <span class="td-label" data-i18n="td_seq">TD</span>
+        <div class="td-cells">
+          <span class="td-cell"><span class="td-tf">1h</span><span class="td-val neutral" id="bnb-td-1h">—</span></span>
+          <span class="td-cell"><span class="td-tf">4h</span><span class="td-val neutral" id="bnb-td-4h">—</span></span>
+          <span class="td-cell"><span class="td-tf">1D</span><span class="td-val neutral" id="bnb-td-1d">—</span></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOL -->
+    <section class="card" data-coin="sol">
+      <div class="coin-header">
+        <span class="coin-name">SOL</span>
+        <span class="change-badge" id="sol-change">—</span>
+      </div>
+      <div class="price-table">
+        <div class="price-row">
+          <span class="exchange">Binance</span>
+          <span class="quote"></span>
+          <span class="price" id="sol-bn-price">—</span>
+          <span class="arrow" id="sol-bn-arrow"></span>
+        </div>
+        <div class="price-row">
+          <span class="exchange">Coinbase</span>
+          <span class="quote"></span>
+          <span class="price" id="sol-cb-price">—</span>
+          <span class="arrow" id="sol-cb-arrow"></span>
+        </div>
+      </div>
+      <div class="diff-row" data-i18n-title="tip_premium">
+        <span class="data-label diff-label" data-i18n="premium">Premium</span>
+        <span class="diff-line" id="sol-diff">—</span>
+      </div>
+
+      <div class="data-grid">
+        <div class="data-cell" data-i18n-title="tip_funding">
+          <span class="data-label" data-i18n="funding">Funding</span>
+          <span class="data-value" id="sol-fr">—</span>
+        </div>
+        <div class="data-cell" data-i18n-title="tip_oi">
+          <span class="data-label" data-i18n="open_int">OI</span>
+          <span class="data-value" id="sol-oi">—</span>
+        </div>
+        <div class="data-cell" data-i18n-title="tip_ls">
+          <span class="data-label" data-i18n="long_short">L/S</span>
+          <span class="data-value" id="sol-ls">—</span>
+        </div>
+        <div class="data-cell" data-i18n-title="tip_top">
+          <span class="data-label" data-i18n="top_traders">Top</span>
+          <span class="data-value" id="sol-topls">—</span>
+        </div>
+        <div class="data-cell" data-i18n-title="tip_taker">
+          <span class="data-label" data-i18n="taker_bs">Taker</span>
+          <span class="data-value" id="sol-taker">—</span>
+        </div>
+        <div class="data-cell" data-i18n-title="tip_vol">
+          <span class="data-label" data-i18n="volume">Vol</span>
+          <span class="data-value" id="sol-vol">—</span>
+        </div>
+      </div>
+
+      <div class="td-bar" data-i18n-title="tip_td">
+        <span class="td-label" data-i18n="td_seq">TD</span>
+        <div class="td-cells">
+          <span class="td-cell"><span class="td-tf">1h</span><span class="td-val neutral" id="sol-td-1h">—</span></span>
+          <span class="td-cell"><span class="td-tf">4h</span><span class="td-val neutral" id="sol-td-4h">—</span></span>
+          <span class="td-cell"><span class="td-tf">1D</span><span class="td-val neutral" id="sol-td-1d">—</span></span>
+        </div>
+      </div>
+    </section>
+    </div>
+
+    <footer>
+      <a class="footer-link" href="https://anyai.network/" id="site-link" data-i18n="website">Website</a>
+      <button class="footer-link settings-btn" id="settings-btn" data-i18n="settings">Settings</button>
+    </footer>
+  </div>
+
+  <!-- Settings panel (hidden by default) -->
+  <div class="container settings-panel" id="settings-panel" style="display:none">
+    <header>
+      <button class="back-btn" id="back-btn">&#8592;</button>
+      <span class="brand" data-i18n="settings">Settings</span>
+      <span></span>
+    </header>
+
+    <div class="setting-group">
+      <label class="setting-label" data-i18n="language">Language</label>
+      <select class="setting-input" id="opt-lang">
+        <option value="en">English</option>
+        <option value="zh">中文</option>
+        <option value="ja">日本語</option>
+        <option value="ko">한국어</option>
+        <option value="vi">Tiếng Việt</option>
+        <option value="id">Bahasa Indonesia</option>
+      </select>
+    </div>
+
+    <div class="setting-group" data-i18n-title="tip_badge">
+      <label class="setting-label" data-i18n="badge_coin">Icon Badge</label>
+      <select class="setting-input" id="opt-badge">
+        <option value="none" data-i18n="badge_none">Off</option>
+        <option value="btc" data-i18n="badge_btc">BTC Price</option>
+        <option value="eth" data-i18n="badge_eth">ETH Price</option>
+        <option value="bnb" data-i18n="badge_bnb">BNB Price</option>
+        <option value="sol" data-i18n="badge_sol">SOL Price</option>
+        <option value="sentiment" data-i18n="badge_sentiment">Sentiment</option>
+      </select>
+    </div>
+
+    <div class="setting-group">
+      <label class="setting-label" data-i18n="visible_coins">Display Coins</label>
+      <div class="coin-toggles">
+        <label class="coin-toggle"><input type="checkbox" value="btc" checked> BTC</label>
+        <label class="coin-toggle"><input type="checkbox" value="eth" checked> ETH</label>
+        <label class="coin-toggle"><input type="checkbox" value="bnb" checked> BNB</label>
+        <label class="coin-toggle"><input type="checkbox" value="sol" checked> SOL</label>
+      </div>
+    </div>
+  </div>
+
+  <script src="i18n.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
