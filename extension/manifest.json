@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "AnyAI Radar",
-  "version": "1.0.0",
-  "description": "AnyAI Radar: non-custodial AI auto-trading platform. Real-time crypto prices, funding rates, sentiment and market intelligence by AnyAI.",
+  "name": "AnyAI",
+  "version": "1.2.0",
+  "description": "AnyAI crypto radar — real-time prices, premium, funding rates, open interest, sentiment and TD signals from anyai.network",
   "permissions": ["storage", "alarms", "sidePanel"],
   "action": {
     "default_popup": "popup.html",

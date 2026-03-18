@@ -7,43 +7,48 @@
 <body>
   <div class="container" id="dashboard">
     <header>
-      <span class="brand"><span class="brand-ai">AnyAI</span> <span class="brand-radar">Radar</span></span>
-      <span class="status" id="status"></span>
-      <button class="pin-btn" id="pin-btn" data-i18n-title="tip_pin">
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="1" y="1" width="12" height="12" rx="2"/><line x1="5" y1="1" x2="5" y2="13"/></svg>
-      </button>
+      <div class="brand-area">
+        <span class="brand"><span class="brand-ai">ANYAI</span> <span class="brand-radar">RADAR</span></span>
+        <span class="status" id="status"></span>
+      </div>
+      <div class="header-actions">
+        <a class="icon-btn" href="https://anyai.network/" id="site-link" data-i18n-title="website">
+          <svg width="15" height="15" viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><circle cx="7.5" cy="7.5" r="5.5"/><path d="M2 7.5h11"/><path d="M7.5 2c-2 2-2 9 0 11"/><path d="M7.5 2c2 2 2 9 0 11"/></svg>
+        </a>
+        <button class="icon-btn" id="settings-btn" data-i18n-title="settings">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        </button>
+        <button class="icon-btn" id="pin-btn" data-i18n-title="tip_pin">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="1" y="1" width="12" height="12" rx="2"/><line x1="5" y1="1" x2="5" y2="13"/></svg>
+        </button>
+      </div>
     </header>
 
     <div class="content">
-    <!-- Sentiment -->
-    <section class="sentiment-card" data-i18n-title="tip_sentiment">
-      <span class="data-label" data-i18n="sentiment">Market Sentiment</span>
-      <div class="sentiment-row">
+    <!-- Overview: Sentiment (compact) + Global Stats merged -->
+    <section class="overview" data-i18n-title="tip_sentiment">
+      <div class="sentiment-compact">
         <div class="sentiment-bar">
           <div class="sentiment-fill" id="sentiment-fill"></div>
         </div>
         <span class="sentiment-text" id="sentiment-text">—</span>
       </div>
-    </section>
-
-    <!-- Global Market — horizontal strip -->
-    <section class="global-card" id="global-card" style="display:none">
-      <div class="global-strip">
+      <div class="global-strip" id="global-card" style="display:none">
         <div class="global-cell">
           <span class="data-label" data-i18n="total_mcap">MCap</span>
           <span class="data-value neutral" id="global-mcap">—</span>
         </div>
-        <span class="global-dot">·</span>
+        <span class="global-sep"></span>
         <div class="global-cell">
           <span class="data-label" data-i18n="total_vol">Vol</span>
           <span class="data-value neutral" id="global-vol">—</span>
         </div>
-        <span class="global-dot">·</span>
+        <span class="global-sep"></span>
         <div class="global-cell">
           <span class="data-label" data-i18n="btc_dom">BTC</span>
           <span class="data-value neutral" id="global-btc-dom">—</span>
         </div>
-        <span class="global-dot">·</span>
+        <span class="global-sep"></span>
         <div class="global-cell">
           <span class="data-label" data-i18n="eth_dom">ETH</span>
           <span class="data-value neutral" id="global-eth-dom">—</span>
@@ -57,7 +62,7 @@
         <span class="coin-name">BTC</span>
         <span class="change-badge" id="btc-change">—</span>
       </div>
-      <div class="price-table">
+      <div class="price-table" data-i18n-title="tip_price">
         <div class="price-row">
           <span class="exchange">Binance</span>
           <span class="quote"></span>
@@ -119,7 +124,7 @@
         <span class="coin-name">ETH</span>
         <span class="change-badge" id="eth-change">—</span>
       </div>
-      <div class="price-table">
+      <div class="price-table" data-i18n-title="tip_price">
         <div class="price-row">
           <span class="exchange">Binance</span>
           <span class="quote"></span>
@@ -181,7 +186,7 @@
         <span class="coin-name">BNB</span>
         <span class="change-badge" id="bnb-change">—</span>
       </div>
-      <div class="price-table">
+      <div class="price-table" data-i18n-title="tip_price">
         <div class="price-row">
           <span class="exchange">Binance</span>
           <span class="quote"></span>
@@ -243,7 +248,7 @@
         <span class="coin-name">SOL</span>
         <span class="change-badge" id="sol-change">—</span>
       </div>
-      <div class="price-table">
+      <div class="price-table" data-i18n-title="tip_price">
         <div class="price-row">
           <span class="exchange">Binance</span>
           <span class="quote"></span>
@@ -299,11 +304,6 @@
       </div>
     </section>
     </div>
-
-    <footer>
-      <a class="footer-link" href="https://anyai.network/" id="site-link" data-i18n="website">Website</a>
-      <button class="footer-link settings-btn" id="settings-btn" data-i18n="settings">Settings</button>
-    </footer>
   </div>
 
   <!-- Settings panel (hidden by default) -->

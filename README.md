@@ -23,6 +23,14 @@ BTC, ETH, BNB, SOL — configurable via settings.
 
 ## Install
 
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/v/fpmkjbllkdicgfflklpoeiifiefdihmk)](https://chromewebstore.google.com/detail/anyai/fpmkjbllkdicgfflklpoeiifiefdihmk)
+
+**From Chrome Web Store (recommended):**
+
+[Install AnyAI Radar](https://chromewebstore.google.com/detail/anyai/fpmkjbllkdicgfflklpoeiifiefdihmk)
+
+**From source:**
+
 1. Download or clone this repository
 2. Open `chrome://extensions` in Chrome
 3. Enable **Developer mode** (top right)

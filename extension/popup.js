@@ -133,12 +133,14 @@ function renderCoin(prefix, coin) {
       cbArrow.className = 'arrow';
     }
 
-    // Diff line below
+    // Diff line below — absolute values, label indicates which exchange
     const diff = coin.premium.diff;
     const pct = coin.premium.pct;
-    const sign = diff >= 0 ? '+' : '';
-    diffEl.textContent = `${sign}${formatDiff(diff)} (${sign}${pct.toFixed(2)}%)`;
+    diffEl.textContent = `${formatDiff(diff)} (${Math.abs(pct).toFixed(2)}%)`;
     diffEl.className = 'diff-line ' + (diff >= 0 ? 'up' : 'down');
+
+    const diffLabel = document.querySelector(`[data-coin="${prefix}"] .diff-label`);
+    if (diffLabel) diffLabel.textContent = (diff >= 0 ? 'CB ' : 'BN ') + t('premium');
   } else {
     cbEl.textContent = '—';
     bnArrow.textContent = '';

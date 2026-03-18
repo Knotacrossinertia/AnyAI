@@ -1,6 +1,6 @@
 // Background service worker — fetches dashboard data on alarm
 
-const DEFAULT_API_URL = 'https://ext.xos.is';
+const DEFAULT_API_URL = 'https://api-ext.anyai.network';
 const FAST = 0.5;  // 30s — UI open, matches backend refresh
 const SLOW = 5;  // minutes — badge only, no UI
 
